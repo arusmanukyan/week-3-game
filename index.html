@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hangman Game</title>
+	<title>Psychic</title>
 </head>
 <body>
 	<h1>
@@ -14,14 +14,14 @@
 		<ul>
 			<li id="wins">Wins:</li>
 			<li id="loses">Loses:</li>
-			<li id="left">Guesses left:</li>
-			<li id="far">Your Guesses so far:</li>
+			<li id="guessesLeft">Guesses left:</li>
+			<li id="guessesSoFar">Your Guesses so far:</li>
 		</ul>
 
 	<script type="text/javascript">
 	
-	var wins = 1;
-	var loses = 1;
+	var wins = 0;
+	var loses = 0;
 	var guessesLeft = 10;
 	var guessesSoFar = 0;
 
@@ -34,19 +34,20 @@
 		var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
 	for (var i = 0; i < randomLetters.length; i++) {
-		if (userGuess == randomLetters){
-		 document.getElementById("wins").innerHTML = "Wins:" + wins++;
+		if (userGuess === randomLetters[i]){
+		 wins = wins + 1;
+		 document.getElementById("wins").innerHTML = "Wins:" + wins;
 		}else{
-			document.getElementById("left").innerHTML = "Guesses left:" + guessesLeft--;
-		 	document.getElementById("far").innerHTML = "Guesses so far:" + guessesSoFar++;
-		}if (guessesLeft == 0){
-			document.location.reload();
-		}
-		
+			guessesLeft = guessesLeft - 1;
+			document.getElementById("guessesLeft").innerHTML = "Guesses left:" + guessesLeft;
 			
+		}if (randomLetters[i] === userGuess){
+		 	document.getElementById("guessesSoFar").innerHTML = "Your Guesses so far:" + userGuess;	
+		}
+		}if (guessesLeft === 0){
+			document.location.reload();
 	}
 }
-
 
 
 	</script>
