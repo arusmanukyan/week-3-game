@@ -5,62 +5,47 @@
 	<title>Hangman Game</title>
 </head>
 <body>
+	<h1>
+		The Psychic Game
+	</h1>
+	<h2>
+		Guess what letter I'm thinkin of..
+	</h2>
+		<ul>
+			<li id="wins">Wins:</li>
+			<li id="loses">Loses:</li>
+			<li id="left">Guesses left:</li>
+			<li id="far">Your Guesses so far:</li>
+		</ul>
 
 	<script type="text/javascript">
+	
+	var wins = 1;
+	var loses = 1;
+	var guessesLeft = 10;
+	var guessesSoFar = 0;
 
-		// Words that User will try to guess
-		var words = ["red", "green", "blue"];
-		console.log(words);
+	 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-		// Computer Randomly Picks one of the words from the array called "words" above
-		var randomWord = words[Math.floor(Math.random() * words.length)];
-		console.log(randomWord);
+	 var randomLetters = alphabet[Math.floor(Math.random() * alphabet.length)];
+		console.log(randomLetters);
 
-		// Loop to Display dashes that are based on the number of letters in the word that was randomly chosen
-		var dashes = [];
-
-		for (var i = 0; i < randomWord.length; i++) {
-		dashes[i] = "_"; 
-		}
-		console.log(dashes);
-
-		// Splits the random word that has been turned into dashes, into individual letters
-	    var randomWordSplit = randomWord.split("");
-	    console.log(randomWordSplit);
-
-		// // Key Function for letters that the user guesses
-		document.onkeyup = function(event){
+	document.onkeyup = function(event){
 		var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
+	for (var i = 0; i < randomLetters.length; i++) {
+		if (userGuess == randomLetters){
+		 document.getElementById("wins").innerHTML = "Wins:" + wins++;
+		}else{
+			document.getElementById("left").innerHTML = "Guesses left:" + guessesLeft--;
+		 	document.getElementById("far").innerHTML = "Guesses so far:" + guessesSoFar++;
+		}if (guessesLeft == 0){
+			document.location.reload();
+		}
 		
-		// If userGuess is correct -- this will replace the dash with the correctly guessed letter
-
-			for (var i = 0; i < randomWord.length; i++) {
-			// If userGuess is numberOfGuesses (10). Then the game ends. Alert you lose and restart loop.
-
-			// number of guesses
-			var numberOfGuesses = 10;
-
-			if (numberOfGuesses = 0){
-				Alert("you lose!");
-			}
-
-			if (userGuess !== randomWordSplit){
-				alert("you lose!") && (numberOfGuesses--);
-				console.log(numberOfGuesses--);
- 			}
-
-				if (userGuess == randomWordSplit[i]) {
-					dashes[i] = userGuess;
-					console.log(dashes);
-				} else{
-				    alert("you lose!") && (numberOfGuesses--);
-					console.log(userGuess)
-
-				}
-				
-			}
-			}
+			
+	}
+}
 
 
 
