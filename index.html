@@ -1,9 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
+	<meta charset="UTF-8">
+	<title>Hangman Game</title>
 </head>
 <body>
 
+	<script type="text/javascript">
+
+		// Words that User will try to guess
+		var words = ["red", "green", "blue"];
+		console.log(words);
+
+		// Computer Randomly Picks one of the words from the array called "words" above
+		var randomWord = words[Math.floor(Math.random() * words.length)];
+		console.log(randomWord);
+
+		// Loop to Display dashes that are based on the number of letters in the word that was randomly chosen
+		var dashes = [];
+
+		for (var i = 0; i < randomWord.length; i++) {
+		dashes[i] = "_"; 
+		}
+		console.log(dashes);
+
+		// Splits the random word that has been turned into dashes, into individual letters
+	    var randomWordSplit = randomWord.split("");
+	    console.log(randomWordSplit);
+
+		// // Key Function for letters that the user guesses
+		document.onkeyup = function(event){
+		var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+		
+		// If userGuess is correct -- this will replace the dash with the correctly guessed letter
+
+			for (var i = 0; i < randomWord.length; i++) {
+			// If userGuess is numberOfGuesses (10). Then the game ends. Alert you lose and restart loop.
+
+			// number of guesses
+			var numberOfGuesses = 10;
+
+			if (numberOfGuesses = 0){
+				Alert("you lose!");
+			}
+
+			if (userGuess !== randomWordSplit){
+				alert("you lose!") && (numberOfGuesses--);
+				console.log(numberOfGuesses--);
+ 			}
+
+				if (userGuess == randomWordSplit[i]) {
+					dashes[i] = userGuess;
+					console.log(dashes);
+				} else{
+				    alert("you lose!") && (numberOfGuesses--);
+					console.log(userGuess)
+
+				}
+				
+			}
+			}
+
+
+
+	</script>
 </body>
 </html>
